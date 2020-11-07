@@ -79,6 +79,7 @@ func (p *StoragePools) Create(blockpool *StoragePool) error {
 	var deviceClass string
 
 	poolname := blockpool.ObjectMeta.Name
+	clustername := blockpool.Spec.ClusterID
 	rookclnt := p.Client
 	_, err := rookclnt.CephV1().CephBlockPools(p.Namespace).Get(poolname, metav1.GetOptions{})
 	if err == nil {
@@ -103,7 +104,7 @@ func (p *StoragePools) Create(blockpool *StoragePool) error {
 		pool := &cephv1.CephBlockPool{
 			ObjectMeta: metav1.ObjectMeta{
 				Name:      poolname,
-				Namespace: blockpool.Spec.ClusterID,
+				Namespace: clustername,
 			},
 			Spec: cephv1.PoolSpec{
 				FailureDomain:   domain,
@@ -126,7 +127,7 @@ func (p *StoragePools) Create(blockpool *StoragePool) error {
 			ret = fmt.Errorf("No valid durability class specified, failed to create storage pool")
 			return ret
 		}
-		_, err = rookclnt.CephV1().CephBlockPools(p.Namespace).Create(pool)
+		_, err = rookclnt.CephV1().CephBlockPools(clustername).Create(pool)
 		if err == nil {
 			fmt.Printf("Ceph Block pool created %s \n", poolname)
 		} else {

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crd-deployment
+  labels:
+   appname: crdexample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mbcrd-deployment
+  template:
+    metadata:
+      labels:
+        name: mbcrd-deployment
+    spec:
+      containers:
+      - image: muralibashyam/crdclient:1.0
+        name: mbcrd
+        imagePullPolicy: Always
+      imagePullSecrets:
+      - name: regcred
+

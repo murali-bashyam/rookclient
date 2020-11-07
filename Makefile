@@ -33,7 +33,7 @@ build: build.common ## Build source code for host platform.
 
 build.image: build
 	@cp $(OUTPUT_DIR)/cmd image
-	@sudo docker build -t $(BUILD_REGISTRY)/$(CRDEXAMPLE_IMG):$(CRDEXAMPLE_VERSION) image
+	@sudo docker build -t $(BUILD_REGISTRY)/$(ROOKCLIENT_IMG):$(ROOKCLIENT_VERSION) image
 	@rm -f image/cmd
 
 vet: ## Runs lint checks on go sources.

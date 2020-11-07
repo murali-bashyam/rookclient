@@ -1,0 +1,26 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rookclient-cluster-mgmt
+  labels:
+   appname: rookclient
+rules:
+- apiGroups:
+  - "ceph.rook.io"
+  resources:
+   - cephclusters
+   - cephblockpools
+  verbs:
+   - get
+   - list
+   - create
+   - update
+   - delete
+- apiGroups:
+  - ""
+  resources:
+   - pods
+  verbs:
+   - get
+   - list
+   - watch

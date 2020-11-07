@@ -30,7 +30,7 @@ ifeq ($(origin HOSTNAME), undefined)
 HOSTNAME := $(shell hostname)
 endif
 
-ROOKCLIENT_IMG := crdclient
+ROOKCLIENT_IMG := rookclient
 ROOKCLIENT_VERSION := v1.0
 BUILD_REGISTRY := muralibashyam
 

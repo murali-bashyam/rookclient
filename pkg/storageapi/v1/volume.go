@@ -35,11 +35,10 @@ kind: StorageClass
 metadata:
   name: ` + storageClassName + `
 provisioner: ` + namespace + `.rbd.csi.ceph.com
-reclaimPolicy: ` + reclaimPolicy + `
 parameters:
   clusterID: ` + clusterid + `
   pool: ` + poolName + `
-  imageFormat: 2
+  imageFormat: "2"
   imageFeatures: layering
   csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
   csi.storage.k8s.io/provisioner-secret-namespace: ` + namespace + `
@@ -49,6 +48,7 @@ parameters:
   csi.storage.k8s.io/node-stage-secret-namespace: ` + namespace + `
   csi.storage.k8s.io/fstype: ext4
 allowVolumeExpansion: true
+reclaimPolicy: ` + reclaimPolicy + `
 `
 }
 

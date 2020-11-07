@@ -18,7 +18,7 @@ type ClusterInterface interface {
 }
 
 const (
-	cephversion string = "ceph/v15.2.4"
+	cephversion string = "ceph/ceph:v15.2.4"
 	dirhostpath string = "/var/lib/rook"
 )
 
